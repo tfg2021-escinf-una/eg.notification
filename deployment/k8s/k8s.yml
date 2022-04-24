@@ -28,6 +28,8 @@ spec:
         env: 
           - name: FLASK_ENV
             value: $ENV
+          - name: FLASK_APP
+            value: app
           - name: EmailAddress
             valueFrom:
               secretKeyRef:

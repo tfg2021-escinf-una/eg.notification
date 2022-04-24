@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: xapisecrets
+type: Opaque
+stringData: 
+  NotificationEmailAddress: $NotificationEmailAddress
+  NotificationPassword: $NotificationPassword
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eg-notification
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eg-notification
+  template:
+    metadata:
+      labels:
+        app: eg-notification
+    spec:
+      containers:
+      - image: inftfg2021/eg.notification:$TAG
+        name: eg-notification
+        env: 
+          - name: FLASK_ENV
+            value: $ENV
+          - name: EmailAddress
+            valueFrom:
+              secretKeyRef:
+                name: xapisecrets
+                key: NotificationEmailAddress
+          - name: EmailPassword
+            valueFrom:
+              secretKeyRef:
+                name: xapisecrets
+                key: NotificationPassword
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eg-notification
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+spec:
+  type: ClusterIP  
+  ports:
+  - name: "eg-notification"
+    port: 5000
+  selector:
+    app: eg-notification

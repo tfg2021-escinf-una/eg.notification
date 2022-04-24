@@ -18,7 +18,7 @@ def hello_world():
 
 @app.route("/notify")
 def notification():
-    msg = Message('Notification microservice test', sender =   'tfg2021.escinf.una@gmail.com', recipients = ['karen.dq123@gmail.com'])
+    msg = Message('Notification microservice test', sender =   'tfg2021.escinf.una@gmail.com', recipients = ['edlobo98@gmail.com'])
     msg.body = "This is just a simple notification for testing purposes"
     mail.send(msg)
     return "Message sent!", 200

@@ -8,4 +8,6 @@ COPY /app .
 
 ENV FLASK_APP="app"
 
+EXPOSE 5000
+
 CMD [ "python3", "-m" , "flask", "run" ]

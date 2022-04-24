@@ -64,7 +64,7 @@ jobs:
           name: eg.notification
           namespace: tfg2021-escinf-una
           timeout: 8m
-          skipIfExists: true
+          skipIfExists: false
           filename: ./deployment/okteto-pipeline.yml
           variables: "ENV=Production, TAG=${{ needs.build.outputs.version_tag }}"
   

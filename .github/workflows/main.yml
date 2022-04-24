@@ -64,7 +64,7 @@ jobs:
           name: eg.notification
           namespace: tfg2021-escinf-una
           timeout: 8m
-          skipIfExists: true
+          skipIfExists: false
           filename: ./deployment/okteto-pipeline.yml
           variables: "ENV=Production, TAG=${{ needs.build.outputs.version_tag }}"
   
@@ -73,13 +73,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create Tag and update the repository
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      
-      - name: Tagging repository    
+         
       - uses: rickstaa/action-create-tag@v1
         with:
           tag: ${{ needs.build.outputs.version_tag }}
           message: "Latest release deployed on PROD"
-    

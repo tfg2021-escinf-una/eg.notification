@@ -1,8 +1,9 @@
 from flask import Flask
 from flask_mail import Mail, Message
+from flask_cors import CORS
 import os
 app = Flask(__name__)
-mail = Mail(app)
+CORS(app)
 
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465

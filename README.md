@@ -2,12 +2,9 @@
 
 HOW TO RUN Notification Microservice
 
-1. pip install -r requirements.txt
-2. cd app
-3. export email="YOUR_EMAIL_HERE"
-4. export password="YOUR_PASSWORD_HERE"
+1. cd app
+2. export MJ_APIKEY_PUBLIC="YOUR PUBLIC API_KEY HERE"
+3. export MJ_APIKEY_PRIVATE="YOUR PRIVATE SECRET HERE"
+4. export EMAIL_SENDER="YOUR AUTHORIZED EMAIL ON MAILJET HERE"
 5. export FLASK_APP="app"
 6. flask run
-
-TO Build Docker Image
-docker build -t testing --build-arg email_env=YOUR_EMAIL_HERE --build-arg password_env=YOUR_PASSWORD_HERE --no-cache .

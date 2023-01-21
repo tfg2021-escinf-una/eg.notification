@@ -1,6 +1,7 @@
 #!/bin/bash
 cd app
-export EmailAddress="YOUR EMAIL HERE"
-export EmailPassword="YOUR PASS HERE"
+export MJ_APIKEY_PUBLIC="YOUR PUBLIC API_KEY HERE"
+export MJ_APIKEY_PRIVATE="YOUR PRIVATE SECRET HERE"
+export EMAIL_SENDER="YOUR AUTHORIZED EMAIL ON MAILJET HERE"
 export FLASK_APP="app"
 flask run

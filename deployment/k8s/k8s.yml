@@ -4,9 +4,8 @@ metadata:
   name: xapisecrets
 type: Opaque
 stringData: 
-  NotificationEmailAddress: $NotificationEmailAddress
-  NotificationPassword: $NotificationPassword
-
+  MailJetPublicAPIKEY: $MailJetPublicAPIKEY
+  MailJetPrivateSecret: $MailJetPrivateSecret
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,16 +31,18 @@ spec:
             value: app
           - name: FLASK_RUN_HOST
             value: "0.0.0.0"
-          - name: EmailAddress
+          - name: EMAIL_SENDER
+            value: $EMAILSENDER
+          - name: MJ_APIKEY_PUBLIC
             valueFrom:
               secretKeyRef:
                 name: xapisecrets
-                key: NotificationEmailAddress
-          - name: EmailPassword
+                key: MailJetPublicAPIKEY
+          - name: MJ_APIKEY_PRIVATE
             valueFrom:
               secretKeyRef:
                 name: xapisecrets
-                key: NotificationPassword
+                key: MailJetPrivateSecret
 ---
 apiVersion: v1
 kind: Service
